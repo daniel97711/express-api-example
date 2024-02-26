@@ -1,16 +1,16 @@
-const express = require("express");
-const cors = require("cors");
+import express, { Router } from "express";
+import serverless from "serverless-http";
 
 const app = express();
+const router = Router();
+
 const port = process.env.PORT || 3000;
 
-app.use(cors());
-
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
   res.send({ data: "Hello SENG2021!" });
 });
 
-app.get("/slow", (req, res) => {
+router.get("/slow", (req, res) => {
   const { delay } = req.query;
 
   setTimeout(
@@ -22,6 +22,6 @@ app.get("/slow", (req, res) => {
   );
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+api.use("/api/", router);
+
+export const handler = serverless(api);
