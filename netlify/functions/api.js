@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 import serverless from "serverless-http";
 
-const app = express();
+const api = express();
 const router = Router();
 
 const port = process.env.PORT || 3000;
@@ -24,4 +24,4 @@ router.get("/slow", (req, res) => {
 
 api.use("/api/", router);
 
-export const handler = serverless(api);
+module.exports.handler = serverless(api);
