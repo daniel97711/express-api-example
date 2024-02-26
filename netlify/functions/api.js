@@ -4,8 +4,6 @@ import serverless from "serverless-http";
 const api = express();
 const router = Router();
 
-const port = process.env.PORT || 3000;
-
 router.get("/", (req, res) => {
   res.send({ data: "Hello SENG2021!" });
 });
