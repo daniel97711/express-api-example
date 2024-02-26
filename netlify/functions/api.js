@@ -24,4 +24,4 @@ router.get("/slow", (req, res) => {
 
 api.use("/api/", router);
 
-module.exports.handler = serverless(api);
+export const handler = serverless(api);
