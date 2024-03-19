@@ -11,10 +11,10 @@ const multer = require('multer');
 const app = express();
 const router = Router();
 const config = require('../../src/config.json');
-const {generateHtml, isTokenValid} = require('../../src/generateHTML.js');
-const {userRegister, changePassword} = require('../../src/user.js');
-const {clear} = require('../../src/data.js');
-const {userLogin, userLogout} = require('../../src/userLogin.js');
+// const {generateHtml, isTokenValid} = require('../../src/generateHTML.js');
+// const {userRegister, changePassword} = require('../../src/user.js');
+// const {clear} = require('../../src/data.js');
+// const {userLogin, userLogout} = require('../../src/userLogin.js');
 
 
 
