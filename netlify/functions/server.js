@@ -88,7 +88,7 @@ router.delete('/clear', (req, res) => {
 });
 
 const storage = multer.diskStorage({
-  destination: 'uploads/',
+  destination: '/tmp',
   filename: function(req, file, cb) {
     cb(null, file.originalname);
   },
