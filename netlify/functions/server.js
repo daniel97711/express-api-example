@@ -51,7 +51,7 @@ router.post('/user/password', (req, res) => {
     const value = changePassword(email, password, newPassword);
     res.status(200).json(value);
   } catch (error) {
-    res.status(error.statusCode).json({error: error.message});
+    res.status(error.statusCode || 500).json({error: error.message});
   }
 });
 
@@ -64,7 +64,7 @@ router.post('/user/login', (req, res) => {
     const value = userLogin(email, password);
     res.status(200).json(value);
   } catch (error) {
-    res.status(error.statusCode).json({error: error.message});
+    res.status(error.statusCode || 500).json({error: error.message});
   }
 });
 
@@ -77,7 +77,7 @@ router.post('/user/logout', (req, res) => {
     const value = userLogout(userId, token);
     res.status(200).json(value);
   } catch (error) {
-    res.status(error.statusCode).json({error: error.message});
+    res.status(error.statusCode || 500).json({error: error.message});
   }
 });
 
