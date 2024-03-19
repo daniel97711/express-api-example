@@ -1,5 +1,6 @@
-import express, { Router } from "express";
-import serverless from "serverless-http";
+const express = require('express');
+const { Router } = require('express');
+const serverless = require('serverless-http');
 const {json} = express;
 const cors = require('cors');
 const morgan = require('morgan');
