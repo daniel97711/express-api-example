@@ -1,6 +1,13 @@
 import express, { Router } from "express";
 import serverless from "serverless-http";
-
+const {json} = express;
+const config = require('../../src/config.json');
+const cors = require('cors');
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path');
+const {parseString} = require('xml2js');
+const multer = require('multer');
 const app = express();
 const router = Router();
 
