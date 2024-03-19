@@ -29,6 +29,4 @@ router.get("/slow", (req, res) => {
 
 app.use("/app/", router);
 
-
 module.exports.handler = serverless(app);
-
