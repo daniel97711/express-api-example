@@ -94,7 +94,61 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({storage: storage}).single('xmlFile');
+app.use(express.text({type: 'application/xml'}));
 
+router.post('/render/uploadXML', upload, (req, res) => {
+  const token = req.headers['authorization'];
+  const tokenData = token.slice(7);
+  const tokenObject = JSON.parse(tokenData);
+  if (isTokenValid(tokenObject.id, tokenObject.token) === -1) {
+    return res.status(401).send('Error: You are unauthorized');
+  }
+  if (!req.file) {
+    return res.status(400).send('File not uploaded');
+  }
+
+  fs.readFile(req.file.path, 'utf8', (error, data) => {
+    if (error) {
+      return res.status(500).send('Error: Cannot read file');
+    }
+
+    parseString(data, (error, result) => {
+      if (error) {
+        res.status(400).send('The XML provided is invalid');
+        return;
+      }
+
+      const data = result.Invoice;
+      const json = JSON.stringify(data, null, 2);
+
+      fs.writeFileSync(path.join(__dirname, 'data2.json'), json);
+
+      fs.unlinkSync(req.file.path);
+
+      res.status(200).json(data);
+    });
+  });
+});
+
+router.get('/render/getHTML', (req, res) => {
+  const token = req.headers['authorization'];
+  const tokenData = token.slice(7);
+  const tokenObject = JSON.parse(tokenData);
+  console.log(tokenObject.token);
+
+  if (isTokenValid(tokenObject.id, tokenObject.token) === -1) {
+    return res.status(401).send('Error: You are unauthorized');
+  }
+  try {
+    const data = fs.readFileSync(path.join(__dirname, 'data2.json'));
+    const parsedData = JSON.parse(data);
+
+    const html = generateHtml(parsedData);
+    res.status(200).send(html);
+  } catch (err) {
+    res.status(500).send('Error: Cannot read JSON data');
+  }
+});
 
 
 
