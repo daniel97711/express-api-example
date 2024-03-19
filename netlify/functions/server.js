@@ -16,7 +16,12 @@ const {userRegister, changePassword} = require('../../src/user.js');
 const {clear} = require('../../src/data.js');
 const {userLogin, userLogout} = require('../../src/userLogin.js');
 
+app.use(json());
+app.use(cors());
+app.use(morgan('dev'));
 
+const PORT = parseInt(config.port);
+const HOST = 'localhost';
 
 router.get("/", (req, res) => {
   res.send({ data: "Hello SENG2021!" });
