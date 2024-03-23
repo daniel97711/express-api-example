@@ -4,29 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "jest",
     "start": "nodemon server.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "eslint --fix . --ext .js,.jsx,.ts,.tsx"
+=======
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+>>>>>>> parent of 3654a05 (x)
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/HARI-PRMD/express-api-example.git"
   },
-  "author": "",
+  "author": "Hari Pramod",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HARI-PRMD/express-api-example/issues"
+  },
+  "homepage": "https://github.com/HARI-PRMD/express-api-example#readme",
   "dependencies": {
-    "nodemon": "^3.0.3",
-    "axios": "^1.6.7",
-    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "express": "^4.18.3",
-    "http-errors": "^2.0.0",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
-    "sync-request": "^6.1.0",
-    "uid-generator": "^2.0.0",
-    "validator": "^13.11.0",
-    "xml2js": "^0.6.2"
+    "express": "^4.18.2",
+    "nodemon": "^3.0.3"
   }
 }
