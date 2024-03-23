@@ -30,17 +30,32 @@ app.get("/", (req, res) => {
 });
 
 
-// user register
+// // user register
+// app.put('/user/register', (req, res) => {
+//   const email = req.body.email;
+//   const userName = req.body.userName;
+//   const password = req.body.password;
+
+//   try {
+//     const value = userRegister(email, password, userName);
+//     res.status(200).json(value);
+//   } catch (error) {
+//     res.status(error.statusCode || 500).json({error: error.message});
+//   }
+// });
+
 app.put('/user/register', (req, res) => {
-  const email = req.body.email;
-  const userName = req.body.userName;
-  const password = req.body.password;
+  const { email, userName, password } = req.body;
+
+  if (!email || !userName || !password) {
+    return res.status(400).json({ error: 'Missing required fields in request body' });
+  }
 
   try {
     const value = userRegister(email, password, userName);
     res.status(200).json(value);
   } catch (error) {
-    res.status(error.statusCode || 500).json({error: error.message});
+    res.status(error.statusCode || 500).json({ error: error.message });
   }
 });
 
