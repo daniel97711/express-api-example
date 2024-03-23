@@ -4,15 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "jest",
-    "start": "nodemon server.js",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint-fix": "eslint --fix . --ext .js,.jsx,.ts,.tsx"
-=======
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
->>>>>>> parent of 3654a05 (x)
   },
   "repository": {
     "type": "git",
