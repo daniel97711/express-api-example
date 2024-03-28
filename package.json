@@ -8,15 +8,13 @@
     "start": "nodemon server.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HARI-PRMD/express-api-example.git"
+    "type": "git"
   },
-  "author": "Hari Pramod",
+  "author": "Night Owls",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HARI-PRMD/express-api-example/issues"
   },
-  "homepage": "https://github.com/HARI-PRMD/express-api-example#readme",
+
   "dependencies": {
     "axios": "^1.6.7",
     "body-parser": "^1.20.2",

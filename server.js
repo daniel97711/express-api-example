@@ -26,7 +26,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send({ data: "Hello SENG2021!" });
+  res.send({ data: "Rendering Service Online All routes work as intended" });
 });
 
 
