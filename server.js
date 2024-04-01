@@ -75,7 +75,7 @@ app.post('/user/password', (req, res) => {
 });
 
 app.get('/user/detail', (req,res) => {
-  const userId = req.body.userId;
+  const userId = req.query.userId;
   
   try {
     const response = userDetail(userId);
