@@ -1,13 +1,9 @@
 {
   "$": {
-    "xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
     "xmlns:cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
     "xmlns:cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
-    "xmlns:cec": "urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
+    "xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
   },
-  "cbc:UBLVersionID": [
-    "2.1"
-  ],
   "cbc:CustomizationID": [
     "urn:cen.eu:en16931:2017#conformant#urn:fdc:peppol.eu:2017:poacc:billing:international:aunz:3.0"
   ],
@@ -15,36 +11,88 @@
     "urn:fdc:peppol.eu:2017:poacc:billing:01:1.0"
   ],
   "cbc:ID": [
-    "EBWASP1002"
+    "Invoice01"
   ],
   "cbc:IssueDate": [
-    "2022-02-07"
+    "2019-07-29"
+  ],
+  "cbc:DueDate": [
+    "2019-08-30"
   ],
   "cbc:InvoiceTypeCode": [
-    {
-      "_": "380",
-      "$": {
-        "listAgencyID": "6",
-        "listID": "UNCL1001"
-      }
-    }
+    "380"
+  ],
+  "cbc:Note": [
+    "Tax invoice"
   ],
   "cbc:DocumentCurrencyCode": [
-    {
-      "_": "AUD",
-      "$": {
-        "listAgencyID": "6",
-        "listID": "ISO4217"
-      }
-    }
+    "AUD"
+  ],
+  "cbc:AccountingCost": [
+    "4025:123:4343"
   ],
   "cbc:BuyerReference": [
-    "EBWASP1002"
+    "0150abc"
   ],
-  "cac:AdditionalDocumentReference": [
+  "cac:InvoicePeriod": [
+    {
+      "cbc:StartDate": [
+        "2019-06-01"
+      ],
+      "cbc:EndDate": [
+        "2019-07-30"
+      ]
+    }
+  ],
+  "cac:OrderReference": [
     {
       "cbc:ID": [
-        "ebwasp1002"
+        "PurchaseOrderReference"
+      ],
+      "cbc:SalesOrderID": [
+        "12345678"
+      ]
+    }
+  ],
+  "cac:BillingReference": [
+    {
+      "cac:InvoiceDocumentReference": [
+        {
+          "cbc:ID": [
+            "PrecedingInvoiceReference"
+          ],
+          "cbc:IssueDate": [
+            "2019-05-30"
+          ]
+        }
+      ]
+    }
+  ],
+  "cac:DespatchDocumentReference": [
+    {
+      "cbc:ID": [
+        "DDR-REF"
+      ]
+    }
+  ],
+  "cac:ReceiptDocumentReference": [
+    {
+      "cbc:ID": [
+        "RD-REF"
+      ]
+    }
+  ],
+  "cac:OriginatorDocumentReference": [
+    {
+      "cbc:ID": [
+        "OD-REF"
+      ]
+    }
+  ],
+  "cac:ContractDocumentReference": [
+    {
+      "cbc:ID": [
+        "CD-REF"
       ]
     }
   ],
@@ -52,47 +100,60 @@
     {
       "cac:Party": [
         {
+          "cbc:EndpointID": [
+            {
+              "_": "47555222000",
+              "$": {
+                "schemeID": "0151"
+              }
+            }
+          ],
           "cac:PartyIdentification": [
             {
               "cbc:ID": [
-                {
-                  "_": "80647710156",
-                  "$": {
-                    "schemeAgencyID": "ZZZ",
-                    "schemeID": "0151"
-                  }
-                }
+                "47555222000"
               ]
             }
           ],
           "cac:PartyName": [
             {
               "cbc:Name": [
-                "Ebusiness Software Services Pty Ltd"
+                "Supplier Trading Name Ltd"
               ]
             }
           ],
           "cac:PostalAddress": [
             {
               "cbc:StreetName": [
-                "100 Business St"
+                "Main street 1"
+              ],
+              "cbc:AdditionalStreetName": [
+                "Postbox 123"
               ],
               "cbc:CityName": [
-                "Dulwich Hill"
+                "Harrison"
               ],
               "cbc:PostalZone": [
-                "2203"
+                "2912"
               ],
               "cac:Country": [
                 {
                   "cbc:IdentificationCode": [
-                    {
-                      "_": "AU",
-                      "$": {
-                        "listAgencyID": "6",
-                        "listID": "ISO3166-1:Alpha2"
-                      }
-                    }
+                    "AU"
+                  ]
+                }
+              ]
+            }
+          ],
+          "cac:PartyTaxScheme": [
+            {
+              "cbc:CompanyID": [
+                "47555222000"
+              ],
+              "cac:TaxScheme": [
+                {
+                  "cbc:ID": [
+                    "GST"
                   ]
                 }
               ]
@@ -101,16 +162,31 @@
           "cac:PartyLegalEntity": [
             {
               "cbc:RegistrationName": [
-                "Ebusiness Software Services Pty Ltd"
+                "Supplier Official Name Ltd"
               ],
               "cbc:CompanyID": [
                 {
-                  "_": "80647710156",
+                  "_": "47555222000",
                   "$": {
-                    "schemeAgencyID": "ZZZ",
                     "schemeID": "0151"
                   }
                 }
+              ],
+              "cbc:CompanyLegalForm": [
+                "Partnership"
+              ]
+            }
+          ],
+          "cac:Contact": [
+            {
+              "cbc:Name": [
+                "Ronald MacDonald"
+              ],
+              "cbc:Telephone": [
+                "Mobile 0430123456"
+              ],
+              "cbc:ElectronicMail": [
+                "ronald.macdonald@qualitygoods.com.au"
               ]
             }
           ]
@@ -122,37 +198,65 @@
     {
       "cac:Party": [
         {
+          "cbc:EndpointID": [
+            {
+              "_": "91888222000",
+              "$": {
+                "schemeID": "0151"
+              }
+            }
+          ],
+          "cac:PartyIdentification": [
+            {
+              "cbc:ID": [
+                {
+                  "_": "91888222000",
+                  "$": {
+                    "schemeID": "0151"
+                  }
+                }
+              ]
+            }
+          ],
           "cac:PartyName": [
             {
               "cbc:Name": [
-                "Awolako Enterprises Pty Ltd"
+                "Trotters Trading Co Ltd"
               ]
             }
           ],
           "cac:PostalAddress": [
             {
               "cbc:StreetName": [
-                "Suite 123 Level 45"
+                "100 Queen Street"
               ],
               "cbc:AdditionalStreetName": [
-                "999 The Crescent"
+                "Po box 878"
               ],
               "cbc:CityName": [
-                "Homebush West"
+                "Sydney"
               ],
               "cbc:PostalZone": [
-                "2140"
+                "2000"
               ],
               "cac:Country": [
                 {
                   "cbc:IdentificationCode": [
-                    {
-                      "_": "AU",
-                      "$": {
-                        "listAgencyID": "6",
-                        "listID": "ISO3166-1:Alpha2"
-                      }
-                    }
+                    "AU"
+                  ]
+                }
+              ]
+            }
+          ],
+          "cac:PartyTaxScheme": [
+            {
+              "cbc:CompanyID": [
+                "91888222000"
+              ],
+              "cac:TaxScheme": [
+                {
+                  "cbc:ID": [
+                    "GST"
                   ]
                 }
               ]
@@ -161,7 +265,179 @@
           "cac:PartyLegalEntity": [
             {
               "cbc:RegistrationName": [
-                "Awolako Enterprises Pty Ltd"
+                "Buyer Official Name"
+              ],
+              "cbc:CompanyID": [
+                {
+                  "_": "91888222000",
+                  "$": {
+                    "schemeID": "0151"
+                  }
+                }
+              ]
+            }
+          ],
+          "cac:Contact": [
+            {
+              "cbc:Name": [
+                "Lisa Johnson"
+              ],
+              "cbc:Telephone": [
+                "0261234567"
+              ],
+              "cbc:ElectronicMail": [
+                "lj@buyer.com.au"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "cac:PayeeParty": [
+    {
+      "cac:PartyIdentification": [
+        {
+          "cbc:ID": [
+            "91888222000"
+          ]
+        }
+      ],
+      "cac:PartyName": [
+        {
+          "cbc:Name": [
+            "Mr Anderson"
+          ]
+        }
+      ],
+      "cac:PartyLegalEntity": [
+        {
+          "cbc:CompanyID": [
+            {
+              "_": "91888222000",
+              "$": {
+                "schemeID": "0151"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "cac:TaxRepresentativeParty": [
+    {
+      "cac:PartyName": [
+        {
+          "cbc:Name": [
+            "Mr Wilson"
+          ]
+        }
+      ],
+      "cac:PostalAddress": [
+        {
+          "cbc:StreetName": [
+            "16 Stout Street"
+          ],
+          "cbc:AdditionalStreetName": [
+            "Po box 878"
+          ],
+          "cbc:CityName": [
+            "Sydney"
+          ],
+          "cbc:PostalZone": [
+            "2000"
+          ],
+          "cbc:CountrySubentity": [
+            "NSW"
+          ],
+          "cac:AddressLine": [
+            {
+              "cbc:Line": [
+                "Unit 1"
+              ]
+            }
+          ],
+          "cac:Country": [
+            {
+              "cbc:IdentificationCode": [
+                "AU"
+              ]
+            }
+          ]
+        }
+      ],
+      "cac:PartyTaxScheme": [
+        {
+          "cbc:CompanyID": [
+            "91888222000"
+          ],
+          "cac:TaxScheme": [
+            {
+              "cbc:ID": [
+                "GST"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "cac:Delivery": [
+    {
+      "cbc:ActualDeliveryDate": [
+        "2019-07-01"
+      ],
+      "cac:DeliveryLocation": [
+        {
+          "cbc:ID": [
+            {
+              "_": "91888222000",
+              "$": {
+                "schemeID": "0151"
+              }
+            }
+          ],
+          "cac:Address": [
+            {
+              "cbc:StreetName": [
+                "Delivery street 2"
+              ],
+              "cbc:AdditionalStreetName": [
+                "Building 56"
+              ],
+              "cbc:CityName": [
+                "Sydney"
+              ],
+              "cbc:PostalZone": [
+                "2000"
+              ],
+              "cbc:CountrySubentity": [
+                "NSW"
+              ],
+              "cac:AddressLine": [
+                {
+                  "cbc:Line": [
+                    "Unit 1"
+                  ]
+                }
+              ],
+              "cac:Country": [
+                {
+                  "cbc:IdentificationCode": [
+                    "AU"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "cac:DeliveryParty": [
+        {
+          "cac:PartyName": [
+            {
+              "cbc:Name": [
+                "Delivery party Name"
               ]
             }
           ]
@@ -173,22 +449,87 @@
     {
       "cbc:PaymentMeansCode": [
         {
-          "_": "1",
+          "_": "30",
           "$": {
-            "listAgencyID": "6",
-            "listID": "UNCL4461"
+            "name": "Credit transfer"
           }
         }
       ],
       "cbc:PaymentID": [
-        "EBWASP1002"
+        "PaymentReferenceText"
+      ],
+      "cac:PayeeFinancialAccount": [
+        {
+          "cbc:ID": [
+            "AccountNumber"
+          ],
+          "cbc:Name": [
+            "AccountName"
+          ],
+          "cac:FinancialInstitutionBranch": [
+            {
+              "cbc:ID": [
+                "BSB Number"
+              ]
+            }
+          ]
+        }
       ]
     }
   ],
   "cac:PaymentTerms": [
     {
       "cbc:Note": [
-        "As agreed"
+        "Payment within 30 days"
+      ]
+    }
+  ],
+  "cac:AllowanceCharge": [
+    {
+      "cbc:ChargeIndicator": [
+        "true"
+      ],
+      "cbc:AllowanceChargeReasonCode": [
+        "SAA"
+      ],
+      "cbc:AllowanceChargeReason": [
+        "Shipping and Handling"
+      ],
+      "cbc:MultiplierFactorNumeric": [
+        "0"
+      ],
+      "cbc:Amount": [
+        {
+          "_": "0",
+          "$": {
+            "currencyID": "AUD"
+          }
+        }
+      ],
+      "cbc:BaseAmount": [
+        {
+          "_": "0",
+          "$": {
+            "currencyID": "AUD"
+          }
+        }
+      ],
+      "cac:TaxCategory": [
+        {
+          "cbc:ID": [
+            "S"
+          ],
+          "cbc:Percent": [
+            "10"
+          ],
+          "cac:TaxScheme": [
+            {
+              "cbc:ID": [
+                "GST"
+              ]
+            }
+          ]
+        }
       ]
     }
   ],
@@ -196,7 +537,7 @@
     {
       "cbc:TaxAmount": [
         {
-          "_": "10.00",
+          "_": "148.74",
           "$": {
             "currencyID": "AUD"
           }
@@ -206,7 +547,7 @@
         {
           "cbc:TaxableAmount": [
             {
-              "_": "100.00",
+              "_": "1487.40",
               "$": {
                 "currencyID": "AUD"
               }
@@ -214,7 +555,7 @@
           ],
           "cbc:TaxAmount": [
             {
-              "_": "10.00",
+              "_": "148.74",
               "$": {
                 "currencyID": "AUD"
               }
@@ -223,27 +564,15 @@
           "cac:TaxCategory": [
             {
               "cbc:ID": [
-                {
-                  "_": "S",
-                  "$": {
-                    "schemeAgencyID": "6",
-                    "schemeID": "UNCL5305"
-                  }
-                }
+                "S"
               ],
               "cbc:Percent": [
-                "10.0"
+                "10"
               ],
               "cac:TaxScheme": [
                 {
                   "cbc:ID": [
-                    {
-                      "_": "GST",
-                      "$": {
-                        "schemeAgencyID": "6",
-                        "schemeID": "UN/ECE 5153"
-                      }
-                    }
+                    "GST"
                   ]
                 }
               ]
@@ -257,7 +586,7 @@
     {
       "cbc:LineExtensionAmount": [
         {
-          "_": "100.00",
+          "_": "1487.40",
           "$": {
             "currencyID": "AUD"
           }
@@ -265,7 +594,7 @@
       ],
       "cbc:TaxExclusiveAmount": [
         {
-          "_": "100.00",
+          "_": "1487.40",
           "$": {
             "currencyID": "AUD"
           }
@@ -273,13 +602,21 @@
       ],
       "cbc:TaxInclusiveAmount": [
         {
-          "_": "110.00",
+          "_": "1636.14",
           "$": {
             "currencyID": "AUD"
           }
         }
       ],
-      "cbc:PayableRoundingAmount": [
+      "cbc:ChargeTotalAmount": [
+        {
+          "_": "0.00",
+          "$": {
+            "currencyID": "AUD"
+          }
+        }
+      ],
+      "cbc:PrepaidAmount": [
         {
           "_": "0.00",
           "$": {
@@ -289,7 +626,7 @@
       ],
       "cbc:PayableAmount": [
         {
-          "_": "110.00",
+          "_": "1636.14",
           "$": {
             "currencyID": "AUD"
           }
@@ -302,52 +639,125 @@
       "cbc:ID": [
         "1"
       ],
+      "cbc:Note": [
+        "Texts Giving More Info about the Invoice Line"
+      ],
       "cbc:InvoicedQuantity": [
         {
-          "_": "500.0",
+          "_": "10",
           "$": {
-            "unitCode": "C62",
-            "unitCodeListID": "UNECERec20"
+            "unitCode": "E99"
           }
         }
       ],
       "cbc:LineExtensionAmount": [
         {
-          "_": "100.00",
+          "_": "299.90",
           "$": {
             "currencyID": "AUD"
           }
         }
       ],
+      "cbc:AccountingCost": [
+        "Consulting Fees"
+      ],
+      "cac:InvoicePeriod": [
+        {
+          "cbc:StartDate": [
+            "2019-06-01"
+          ],
+          "cbc:EndDate": [
+            "2019-07-30"
+          ]
+        }
+      ],
+      "cac:OrderLineReference": [
+        {
+          "cbc:LineID": [
+            "123"
+          ]
+        }
+      ],
+      "cac:DocumentReference": [
+        {
+          "cbc:ID": [
+            {
+              "_": "9000074677",
+              "$": {
+                "schemeID": "HWB"
+              }
+            }
+          ],
+          "cbc:DocumentTypeCode": [
+            "130"
+          ]
+        }
+      ],
       "cac:Item": [
         {
+          "cbc:Description": [
+            "Widgets True and Fair"
+          ],
           "cbc:Name": [
-            "pencils"
+            "True-Widgets"
+          ],
+          "cac:BuyersItemIdentification": [
+            {
+              "cbc:ID": [
+                "W659590"
+              ]
+            }
+          ],
+          "cac:SellersItemIdentification": [
+            {
+              "cbc:ID": [
+                "WG546767"
+              ]
+            }
+          ],
+          "cac:StandardItemIdentification": [
+            {
+              "cbc:ID": [
+                {
+                  "_": "WG546767",
+                  "$": {
+                    "schemeID": "0002"
+                  }
+                }
+              ]
+            }
+          ],
+          "cac:OriginCountry": [
+            {
+              "cbc:IdentificationCode": [
+                "AU"
+              ]
+            }
+          ],
+          "cac:CommodityClassification": [
+            {
+              "cbc:ItemClassificationCode": [
+                {
+                  "_": "09348023",
+                  "$": {
+                    "listID": "SRV"
+                  }
+                }
+              ]
+            }
           ],
           "cac:ClassifiedTaxCategory": [
             {
               "cbc:ID": [
-                {
-                  "_": "S",
-                  "$": {
-                    "schemeAgencyID": "6",
-                    "schemeID": "UNCL5305"
-                  }
-                }
+                "S"
               ],
               "cbc:Percent": [
-                "10.0"
+                "10"
               ],
               "cac:TaxScheme": [
                 {
                   "cbc:ID": [
-                    {
-                      "_": "GST",
-                      "$": {
-                        "schemeAgencyID": "6",
-                        "schemeID": "UN/ECE 5153"
-                      }
-                    }
+                    "GST"
                   ]
                 }
               ]
@@ -359,19 +769,297 @@
         {
           "cbc:PriceAmount": [
             {
-              "_": "0.20",
+              "_": "29.99",
               "$": {
                 "currencyID": "AUD"
               }
             }
           ],
-          "cbc:BaseQuantity": [
+          "cac:AllowanceCharge": [
             {
-              "_": "1.0",
+              "cbc:ChargeIndicator": [
+                "false"
+              ],
+              "cbc:Amount": [
+                {
+                  "_": "0.00",
+                  "$": {
+                    "currencyID": "AUD"
+                  }
+                }
+              ],
+              "cbc:BaseAmount": [
+                {
+                  "_": "29.99",
+                  "$": {
+                    "currencyID": "AUD"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cbc:ID": [
+        "2"
+      ],
+      "cbc:InvoicedQuantity": [
+        {
+          "_": "2",
+          "$": {
+            "unitCode": "DAY"
+          }
+        }
+      ],
+      "cbc:LineExtensionAmount": [
+        {
+          "_": "1000",
+          "$": {
+            "currencyID": "AUD"
+          }
+        }
+      ],
+      "cac:OrderLineReference": [
+        {
+          "cbc:LineID": [
+            "123"
+          ]
+        }
+      ],
+      "cac:Item": [
+        {
+          "cbc:Description": [
+            "Description 2"
+          ],
+          "cbc:Name": [
+            "item name 2"
+          ],
+          "cac:StandardItemIdentification": [
+            {
+              "cbc:ID": [
+                {
+                  "_": "21382183120983",
+                  "$": {
+                    "schemeID": "0151"
+                  }
+                }
+              ]
+            }
+          ],
+          "cac:OriginCountry": [
+            {
+              "cbc:IdentificationCode": [
+                "NO"
+              ]
+            }
+          ],
+          "cac:CommodityClassification": [
+            {
+              "cbc:ItemClassificationCode": [
+                {
+                  "_": "09348023",
+                  "$": {
+                    "listID": "SRV"
+                  }
+                }
+              ]
+            }
+          ],
+          "cac:ClassifiedTaxCategory": [
+            {
+              "cbc:ID": [
+                "S"
+              ],
+              "cbc:Percent": [
+                "10"
+              ],
+              "cac:TaxScheme": [
+                {
+                  "cbc:ID": [
+                    "GST"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "cac:Price": [
+        {
+          "cbc:PriceAmount": [
+            {
+              "_": "500",
               "$": {
-                "unitCode": "C62",
-                "unitCodeListID": "UNECERec20"
+                "currencyID": "AUD"
               }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cbc:ID": [
+        "3"
+      ],
+      "cbc:Note": [
+        "Invoice Line Description"
+      ],
+      "cbc:InvoicedQuantity": [
+        {
+          "_": "25",
+          "$": {
+            "unitCode": "M66"
+          }
+        }
+      ],
+      "cbc:LineExtensionAmount": [
+        {
+          "_": "187.50",
+          "$": {
+            "currencyID": "AUD"
+          }
+        }
+      ],
+      "cbc:AccountingCost": [
+        "Consulting Fees"
+      ],
+      "cac:InvoicePeriod": [
+        {
+          "cbc:StartDate": [
+            "2019-06-01"
+          ],
+          "cbc:EndDate": [
+            "2019-07-30"
+          ]
+        }
+      ],
+      "cac:OrderLineReference": [
+        {
+          "cbc:LineID": [
+            "123"
+          ]
+        }
+      ],
+      "cac:DocumentReference": [
+        {
+          "cbc:ID": [
+            {
+              "_": "9000074677",
+              "$": {
+                "schemeID": "HWB"
+              }
+            }
+          ],
+          "cbc:DocumentTypeCode": [
+            "130"
+          ]
+        }
+      ],
+      "cac:Item": [
+        {
+          "cbc:Description": [
+            "Widgets True and Fair"
+          ],
+          "cbc:Name": [
+            "True-Widgets"
+          ],
+          "cac:BuyersItemIdentification": [
+            {
+              "cbc:ID": [
+                "W659590"
+              ]
+            }
+          ],
+          "cac:SellersItemIdentification": [
+            {
+              "cbc:ID": [
+                "WG546767"
+              ]
+            }
+          ],
+          "cac:StandardItemIdentification": [
+            {
+              "cbc:ID": [
+                {
+                  "_": "WG546767",
+                  "$": {
+                    "schemeID": "0151"
+                  }
+                }
+              ]
+            }
+          ],
+          "cac:OriginCountry": [
+            {
+              "cbc:IdentificationCode": [
+                "AU"
+              ]
+            }
+          ],
+          "cac:CommodityClassification": [
+            {
+              "cbc:ItemClassificationCode": [
+                {
+                  "_": "09348023",
+                  "$": {
+                    "listID": "SRV"
+                  }
+                }
+              ]
+            }
+          ],
+          "cac:ClassifiedTaxCategory": [
+            {
+              "cbc:ID": [
+                "S"
+              ],
+              "cbc:Percent": [
+                "10"
+              ],
+              "cac:TaxScheme": [
+                {
+                  "cbc:ID": [
+                    "GST"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "cac:Price": [
+        {
+          "cbc:PriceAmount": [
+            {
+              "_": "7.50",
+              "$": {
+                "currencyID": "AUD"
+              }
+            }
+          ],
+          "cac:AllowanceCharge": [
+            {
+              "cbc:ChargeIndicator": [
+                "false"
+              ],
+              "cbc:Amount": [
+                {
+                  "_": "0.00",
+                  "$": {
+                    "currencyID": "AUD"
+                  }
+                }
+              ],
+              "cbc:BaseAmount": [
+                {
+                  "_": "7.50",
+                  "$": {
+                    "currencyID": "AUD"
+                  }
+                }
+              ]
             }
           ]
         }

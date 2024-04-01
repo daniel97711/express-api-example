@@ -90,6 +90,26 @@ function changePassword(email, password, newPassword) {
 }
 
 
+function userDetail (userId) {
+  const data = getData();
+
+  const user = data.users.find((user) => user.userId === userId);
+  if (user !== undefined) {
+    let object = {
+      userId: user.userId,
+      userName: user.userName,
+      email: user.email,
+      password: user.password,
+      tokens: user.tokens,
+      invoiceList: user.invoiceList
+    }
+    return object;
+  }
+  throw new HTTPError(400, 'user not existed');
+}
+
+
+
 // functions below haven't finish
 // const {clear, getData, updateData} = require('./data.js');
 
@@ -123,4 +143,4 @@ function changePassword(email, password, newPassword) {
 //   return token;
 // }
 
-module.exports = {userRegister, changePassword};
+module.exports = {userRegister, changePassword, userDetail};

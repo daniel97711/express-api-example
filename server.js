@@ -9,9 +9,10 @@ const {parseString} = require('xml2js');
 const multer = require('multer');
 const {generateHtml, isTokenValid} = require('./generateHTML');
 
-const {userRegister, changePassword} = require('./user.js');
+const {userRegister, changePassword, userDetail} = require('./user.js');
 const {clear} = require('./data.js');
 const {userLogin, userLogout} = require('./userLogin.js');
+const {getData, updateData} = require('./data.js');
 
 const app = express();
 app.use(json());
@@ -70,6 +71,17 @@ app.post('/user/password', (req, res) => {
     res.status(200).json(value);
   } catch (error) {
     res.status(error.statusCode || 500).json({error: error.message});
+  }
+});
+
+app.get('/user/detail', (req,res) => {
+  const userId = req.body.userId;
+  
+  try {
+    const response = userDetail(userId);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(error.statusCode).json({error: error.message});
   }
 });
 
@@ -139,6 +151,26 @@ app.post('/render/uploadXML', upload, (req, res) => {
 
       const data = result.Invoice;
       const json = JSON.stringify(data, null, 2);
+
+      //invoiceList
+
+      const parsedJson = JSON.parse(json);
+      const invoiceId= parsedJson['cbc:ID'][0];
+
+      //const invoiceId = json['cbc:ID'];
+      let Data = getData();
+      //console.log(invoiceId);
+      //console.log(json);
+      if (invoiceId != undefined) {
+        const checkInvoice = Data.users.find(user => user.invoiceList.includes(invoiceId));
+        if (checkInvoice === undefined) {
+          const user = Data.users.find((user) => user.userId == tokenObject.id);
+          if (user !== undefined) {
+            user.invoiceList.push(invoiceId);
+            updateData(Data);
+          }
+        }
+      }
 
       fs.writeFileSync(path.join(__dirname, 'data2.json'), json);
 
