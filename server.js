@@ -201,7 +201,35 @@ app.get('/render/getHTML', (req, res) => {
   }
 });
 
+app.post('/render/xmlToHTML', (req, res) => {
+  try {
+    const token = req.headers['authorization'];
+    if (!token) {
+      return res.status(401).send('Error: Authorization token missing');
+    }
+    const tokenData = token.slice(7);
+    const tokenObject = JSON.parse(tokenData);
+    if (isTokenValid(tokenObject.id, tokenObject.token) === -1) {
+      return res.status(401).send('Error: You are unauthorized');
+    }
+    
+    const xmlString = req.body;
 
+    parseString(xmlString, (error, result) => {
+      if (error) {
+        return res.status(400).send('Error: The XML provided is invalid');
+      }
+
+      const jsonData = result.Invoice;
+      const html = generateHtml(jsonData);
+
+      res.status(200).send(html);
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error: Internal Server Error');
+  }
+});
 
 
 
