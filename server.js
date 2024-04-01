@@ -159,18 +159,22 @@ app.post('/render/uploadXML', upload, (req, res) => {
 
       //const invoiceId = json['cbc:ID'];
       let Data = getData();
-      //console.log(invoiceId);
-      //console.log(json);
+
       if (invoiceId != undefined) {
-        const checkInvoice = Data.users.find(user => user.invoiceList.includes(invoiceId));
-        if (checkInvoice === undefined) {
-          const user = Data.users.find((user) => user.userId == tokenObject.id);
-          if (user !== undefined) {
-            user.invoiceList.push(invoiceId);
+        const user1 = Data.users.find((user) => user.userId == tokenObject.id);
+
+        if (user1 !== undefined) {
+
+          const checkInvoice = user1.invoiceList.includes(invoiceId);
+          if (!checkInvoice) {
+
+            user1.invoiceList.push(invoiceId);
             updateData(Data);
           }
         }
       }
+      
+      
 
       fs.writeFileSync(path.join(__dirname, 'data2.json'), json);
 
