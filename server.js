@@ -258,20 +258,17 @@ app.post('/render/xmlToHTML', (req, res) => {
 // chatGPTED MUST CHANGE
 
 app.post('/upload', uploadImage, (req, res) => {
-  upload(req, res, function(err) {
-    if (err instanceof multer.MulterError) {
-      // A Multer error occurred when uploading
-      return res.status(500).json(err);
-    } else if (err) {
-      // An unknown error occurred when uploading
-      return res.status(500).json(err);
-    }
-
-    // Everything went fine, send back a success message or any other data you need
-    return res.status(200).send('File uploaded successfully');
-  });
+  if (req.file) {
+    // If the file was uploaded successfully, return its details
+    return res.status(200).json({
+      fileName: req.file.filename,
+      filePath: req.file.path
+    });
+  } else {
+    // If no file was uploaded, return an error message
+    return res.status(400).send('Error: File not uploaded');
+  }
 });
-
 
 
 
