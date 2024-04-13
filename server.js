@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const {parseString} = require('xml2js');
 const multer = require('multer');
-const {generateHtml, isTokenValid} = require('./generateHTML');
+const {generateHtml, isTokenValid} = require('./generateHTML.js');
 
 const {userRegister, changePassword, userDetail} = require('./user.js');
 const {clear} = require('./data.js');
@@ -125,6 +125,20 @@ const storage = multer.diskStorage({
 });
 const upload = multer({storage: storage}).single('xmlFile');
 
+// CHATGPTED MUST CHANGE
+
+const Imagestorage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploadedimages'); // Specify the directory where you want to store uploaded images
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Append a timestamp to make the filename unique
+  }
+});
+
+const uploadImage = multer({ storage: Imagestorage }).single('image'); // 'image' is the field name for the picture in your form
+
+
 app.use(express.text({type: 'application/xml'}));
 
 app.post('/render/uploadXML', upload, (req, res) => {
@@ -241,18 +255,22 @@ app.post('/render/xmlToHTML', (req, res) => {
 
 
 
+// chatGPTED MUST CHANGE
 
+app.post('/upload', uploadImage, (req, res) => {
+  upload(req, res, function(err) {
+    if (err instanceof multer.MulterError) {
+      // A Multer error occurred when uploading
+      return res.status(500).json(err);
+    } else if (err) {
+      // An unknown error occurred when uploading
+      return res.status(500).json(err);
+    }
 
-
-
-
-
-
-
-
-
-
-
+    // Everything went fine, send back a success message or any other data you need
+    return res.status(200).send('File uploaded successfully');
+  });
+});
 
 
 
