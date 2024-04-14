@@ -22,6 +22,21 @@ app.use(morgan('dev'));
 
 
 
+// CHATGPTED MUST CHANGE
+
+const Imagestorage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploadedimages'); // Specify the directory where you want to store uploaded images
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Append a timestamp to make the filename unique
+  }
+});
+
+const uploadImage = multer({ storage: Imagestorage }).single('image'); // 'image' is the field name for the picture in your form
+
+
+
 const port = process.env.PORT || 3000;
 
 app.use(cors());
@@ -59,6 +74,38 @@ app.put('/user/register', (req, res) => {
     res.status(error.statusCode || 500).json({ error: error.message });
   }
 });
+
+app.put('/user/v2/register', uploadImage, (req, res) => {
+  const { email, userName, password } = req.body;
+  const image = req.file; // This will contain the uploaded image file
+
+  if (!email || !userName || !password || !image) {
+    return res.status(400).json({ error: 'Missing required fields in request body' });
+  }
+
+  try {
+    // Process the image file here (e.g., save it to a location, get its path)
+    const imagePath = image.path; // Example: imagePath = 'uploadedimages/1618824365381-image.jpg'
+
+    // Now you can proceed with user registration
+    const value = userRegister(email, password, userName);
+    res.status(200).json({ user: value, imagePath });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({ error: error.message });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 // change password
 app.post('/user/password', (req, res) => {
@@ -124,19 +171,6 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({storage: storage}).single('xmlFile');
-
-// CHATGPTED MUST CHANGE
-
-const Imagestorage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, './uploadedimages'); // Specify the directory where you want to store uploaded images
-  },
-  filename: function(req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname); // Append a timestamp to make the filename unique
-  }
-});
-
-const uploadImage = multer({ storage: Imagestorage }).single('image'); // 'image' is the field name for the picture in your form
 
 
 app.use(express.text({type: 'application/xml'}));
