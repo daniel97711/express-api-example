@@ -8,11 +8,13 @@ const UIDGenerator = require('uid-generator');
 const uidGen = new UIDGenerator();
 
 
-/** for route /user/register
+/**
+ * for route /user/register
  * @param {String} email - string, require valid email address
  * @param {String} password - string, need to include at
  * least one upppercase, one lowerCase and one number
  * @param {String} userName - string, alphabetical characters and spaces.
+ * @param {String} imagePath - string, path to the user's profile image
  * @return {string}  returns generated userId
  * @return {object}  returns token object with token string
  * id and active boolean
@@ -31,6 +33,8 @@ function userRegister(email, password, userName, imagePath) {
     throw new HTTPError(400, 'Invalid password syntax');
   } else if (data.users.find((user) => user.email === email)) {
     throw new HTTPError(400, 'Email already registered');
+  } else if (!imagePath) {
+    throw new HTTPError(400, 'Profile image path is required');
   }
 
   const newToken = {
