@@ -17,7 +17,7 @@ const uidGen = new UIDGenerator();
  * @return {object}  returns token object with token string
  * id and active boolean
  */
-function userRegister(email, password, userName) {
+function userRegister(email, password, userName, imagePath) {
   const data = getData();
 
   const pattern = /^[a-zA-Z\s-'']*$/;
@@ -45,6 +45,7 @@ function userRegister(email, password, userName) {
     userName: userName,
     email: email,
     password: password,
+    imagePath: imagePath,
     tokens: [],
     invoiceList: [],
   };
@@ -100,6 +101,7 @@ function userDetail (userId) {
       userName: user.userName,
       email: user.email,
       password: user.password,
+      imagePath: user.imagePath,
       tokens: user.tokens,
       invoiceList: user.invoiceList
     }
