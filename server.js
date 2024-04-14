@@ -76,6 +76,8 @@ app.put('/user/register', (req, res) => {
   }
 });
 
+app.use('/uploadedimages', express.static(path.join(__dirname, 'uploadedimages')));
+
 app.put('/user/v2/register', uploadImage, (req, res) => {
   const { email, userName, password } = req.body;
   const image = req.file; // This will contain the uploaded image file
@@ -89,12 +91,13 @@ app.put('/user/v2/register', uploadImage, (req, res) => {
     const imagePath = image.path; // Example: imagePath = 'uploadedimages/1618824365381-image.jpg'
 
     // Now you can proceed with user registration
-    const value = userRegister(email, password, userName);
+    const value = userRegister(email, password, userName,imagePath);
     res.status(200).json({ user: value, imagePath });
   } catch (error) {
     res.status(error.statusCode || 500).json({ error: error.message });
   }
 });
+// Serve uploaded images statically
 
 
 
