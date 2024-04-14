@@ -13,6 +13,7 @@ const {userRegister, changePassword, userDetail} = require('./user.js');
 const {clear} = require('./data.js');
 const {userLogin, userLogout} = require('./userLogin.js');
 const {getData, updateData} = require('./data.js');
+const {sendRecord, sendList, receiveList}  = require("./receive.js");
 
 const app = express();
 app.use(json());
@@ -158,6 +159,52 @@ app.post('/user/logout', (req, res) => {
   }
 });
 
+app.post('/receive/record', (req, res) => {
+  const userId = req.body.userId;
+  const recipient = req.body.recipient;
+  const emailContent = req.body.email;
+  
+  try {
+    const response = sendRecord(userId, recipient, emailContent);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(error.statusCode).json({error: error.message});
+  }
+});
+
+app.get('/receive/receiveList', (req, res) => {
+  const userId = req.body.userId;
+  
+  try {
+    const response = receiveList(userId);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(error.statusCode).json({error: error.message});
+  }
+});
+
+app.get('/receive/sendList', (req, res) => {
+  const userId = req.body.userId;
+  
+  try {
+    const response = sendList(userId);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(error.statusCode).json({error: error.message});
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 // clear all the data from data.json
 app.delete('/clear', (req, res) => {
   const value = clear();
@@ -282,6 +329,18 @@ app.post('/render/xmlToHTML', (req, res) => {
     res.status(500).send('Error: Internal Server Error');
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

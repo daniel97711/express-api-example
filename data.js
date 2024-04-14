@@ -3,6 +3,7 @@ const fs = require('fs');
 const data = {
   users: [],
   invoices: [],
+  emails: [],
 };
 
 /**
