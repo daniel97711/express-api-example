@@ -104,7 +104,7 @@ app.put('/user/v2/register', uploadImage, (req, res) => {
 
     // Now you can proceed with user registration
     const value = userRegister(email, password, userName,imagePath);
-    res.status(200).json({ user: value, imagePath });
+    res.status(200).json(value);
   } catch (error) {
     res.status(error.statusCode || 500).json({ error: error.message });
   }
