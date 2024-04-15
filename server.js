@@ -183,7 +183,7 @@ app.post('/receive/record', (req, res) => {
     const response = sendRecord(userId, recipient, emailContent);
     res.status(200).json(response);
   } catch (error) {
-    res.status(error.statusCode).json({error: error.message});
+    res.status(error.statusCode|| 500).json({error: error.message});
   }
 });
 
@@ -194,7 +194,7 @@ app.get('/receive/receiveList', (req, res) => {
     const response = receiveList(userId);
     res.status(200).json(response);
   } catch (error) {
-    res.status(error.statusCode).json({error: error.message});
+    res.status(error.statusCode|| 500).json({error: error.message});
   }
 });
 
@@ -205,7 +205,7 @@ app.get('/receive/sendList', (req, res) => {
     const response = sendList(userId);
     res.status(200).json(response);
   } catch (error) {
-    res.status(error.statusCode).json({error: error.message});
+    res.status(error.statusCode|| 500).json({error: error.message});
   }
 });
 
