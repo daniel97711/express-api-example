@@ -21,6 +21,18 @@ app.use(cors());
 app.use(morgan('dev'));
 
 
+// Define the directory path
+const uploadDirectory = path.join(__dirname, 'uploadedimages');
+
+// Check if the directory exists, and create it if it doesn't
+if (!fs.existsSync(uploadDirectory)) {
+  try {
+    fs.mkdirSync(uploadDirectory, { recursive: true });
+    console.log('Upload directory created successfully.');
+  } catch (err) {
+    console.error('Error creating upload directory:', err);
+  }
+}
 
 
 // CHATGPTED MUST CHANGE
