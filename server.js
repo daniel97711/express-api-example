@@ -94,7 +94,7 @@ app.put('/user/v2/register', uploadImage, (req, res) => {
   const { email, userName, password } = req.body;
   const image = req.file; // This will contain the uploaded image file
 
-  if (!email || !userName || !password || !image) {
+  if (!email || !userName || !password) {
     return res.status(400).json({ error: 'Missing required fields in request body' });
   }
 

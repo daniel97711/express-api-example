@@ -33,9 +33,7 @@ function userRegister(email, password, userName, imagePath) {
     throw new HTTPError(400, 'Invalid password syntax');
   } else if (data.users.find((user) => user.email === email)) {
     throw new HTTPError(400, 'Email already registered');
-  } else if (!imagePath) {
-    throw new HTTPError(400, 'Profile image path is required');
-  }
+  } 
 
   const newToken = {
     id: uidGen.generateSync(),
