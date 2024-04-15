@@ -187,7 +187,7 @@ app.post('/receive/record', (req, res) => {
   }
 });
 
-app.get('/receive/receiveList', (req, res) => {
+app.post('/receive/receiveList', (req, res) => {
   const userId = req.body.userId;
   
   try {
@@ -198,7 +198,7 @@ app.get('/receive/receiveList', (req, res) => {
   }
 });
 
-app.get('/receive/sendList', (req, res) => {
+app.post('/receive/sendList', (req, res) => {
   const userId = req.body.userId;
   
   try {
