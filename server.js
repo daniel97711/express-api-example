@@ -35,7 +35,7 @@ if (!fs.existsSync(uploadDirectory)) {
 }
 
 
-// CHATGPTED MUST CHANGE
+// CHATGPTED MUST CHANGE UPLOADS IMAGES
 
 const Imagestorage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -43,6 +43,8 @@ const Imagestorage = multer.diskStorage({
   },
   filename: function(req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname); // Append a timestamp to make the filename unique
+    
+    // cb(null, 'a.png');
   }
 });
 
