@@ -114,10 +114,10 @@ function userDetail (userId) {
 
 function callUploadImage(userId, path) {
   const data = getData(); // Assuming getData() function returns your data
-
   const user = data.users.find((user) => user.userId === userId);
   if (user !== undefined) {
     user.imagePath = path; // Replace the value in user.imagePath with path
+   updateData(data);
   }
 }
 
