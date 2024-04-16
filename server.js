@@ -94,25 +94,26 @@ app.use('/uploadedimages', express.static(path.join(__dirname, 'uploadedimages')
 
 app.put('/user/v2/register', uploadImage, (req, res) => {
   const { email, userName, password } = req.body;
-  const image = req.file; // This will contain the uploaded image file
+  let imagePath = null;
 
   if (!email || !userName || !password) {
     return res.status(400).json({ error: 'Missing required fields in request body' });
   }
 
-  try {
-    // Process the image file here (e.g., save it to a location, get its path)
-    const imagePath = image.path; // Example: imagePath = 'uploadedimages/1618824365381-image.jpg'
+  // Check if an image was uploaded
+  if (req.file) {
+    // If an image was uploaded, set imagePath to the path of the uploaded image
+    imagePath = req.file.path;
+  }
 
+  try {
     // Now you can proceed with user registration
-    const value = userRegister(email, password, userName,imagePath);
+    const value = userRegister(email, password, userName, imagePath);
     res.status(200).json(value);
   } catch (error) {
     res.status(error.statusCode || 500).json({ error: error.message });
   }
 });
-// Serve uploaded images statically
-
 
 
 
