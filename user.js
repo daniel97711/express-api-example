@@ -56,7 +56,7 @@ function userRegister(email, password, userName, imagePath) {
   data.users.push(newUser);
   updateData(data);
 
-  return {userId: uid, token: newToken, imagePath: imagePath};
+  return {userId: uid, token: newToken};
 }
 
 /**
