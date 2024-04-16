@@ -378,6 +378,8 @@ app.post('/upload', uploadImage, (req, res) => {
 
     // If the file was uploaded successfully, return its details
     return res.status(200).json({
+
+      userId: userId,
       fileName: req.file.filename,
       filePath: imagePath
     });
