@@ -9,7 +9,7 @@ const {parseString} = require('xml2js');
 const multer = require('multer');
 const {generateHtml, isTokenValid} = require('./generateHTML.js');
 
-const {userRegister, changePassword, userDetail} = require('./user.js');
+const {userRegister, changePassword, userDetail, callUploadImage} = require('./user.js');
 const {clear} = require('./data.js');
 const {userLogin, userLogout} = require('./userLogin.js');
 const {getData, updateData} = require('./data.js');
@@ -370,16 +370,26 @@ app.post('/render/xmlToHTML', (req, res) => {
 
 app.post('/upload', uploadImage, (req, res) => {
   if (req.file) {
+    const userId = req.query.userId;
+    const imagePath = req.file.path; // Get the path of the uploaded image
+
+    // Call the callUploadImage function to update the user's imagePath
+    callUploadImage(userId, imagePath);
+
     // If the file was uploaded successfully, return its details
     return res.status(200).json({
       fileName: req.file.filename,
-      filePath: req.file.path
+      filePath: imagePath
     });
   } else {
     // If no file was uploaded, return an error message
     return res.status(400).send('Error: File not uploaded');
   }
 });
+
+
+
+
 
 
 

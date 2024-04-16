@@ -112,6 +112,15 @@ function userDetail (userId) {
   throw new HTTPError(400, 'user not existed');
 }
 
+function callUploadImage(userId, path) {
+  const data = getData(); // Assuming getData() function returns your data
+
+  const user = data.users.find((user) => user.userId === userId);
+  if (user !== undefined) {
+    user.imagePath = path; // Replace the value in user.imagePath with path
+  }
+}
+
 
 
 // functions below haven't finish
@@ -147,4 +156,4 @@ function userDetail (userId) {
 //   return token;
 // }
 
-module.exports = {userRegister, changePassword, userDetail};
+module.exports = {userRegister, changePassword, userDetail, callUploadImage};
