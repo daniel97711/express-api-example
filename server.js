@@ -94,7 +94,7 @@ app.use('/uploadedimages', express.static(path.join(__dirname, 'uploadedimages')
 
 app.put('/user/v2/register', uploadImage, (req, res) => {
   const { email, userName, password } = req.body;
-  let imagePath = "/uploadedimages\DefaultProfile.png";
+  let imagePath = "DefaultProfile.png";
 
   if (!email || !userName || !password) {
     return res.status(400).json({ error: 'Missing required fields in request body' });
